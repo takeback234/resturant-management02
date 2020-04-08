@@ -1,50 +1,46 @@
 
-package resturantsmanagemento02;
+package resturant.management;
+
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+
 
 public class Chefs extends Employee {
-    
-     private int hours;
-    private int days;
 
-    public Chefs(int hours, int days, String id, String name, float salary, boolean active) {
-        super(id, name, salary, active);
-        this.hours = hours;
-        this.days = days;
-    }
+    String speciality;
+    boolean occupied;
+    String currentorder;
+    Order order;
+    waiter waiterr;
 
-    public Chefs(int hours, int days, String id, String name, float salary) {
-        super(id, name, salary);
-        this.hours = hours;
-        this.days = days;
-    }
-
-    public int getHours() {
-        return hours;
-    }
-
-    public void setHours(int hours) {
-        this.hours = hours;
-    }
-
-    public int getDays() {
-        return days;
-    }
-
-    public void setDays(int days) {
-        this.days = days;
+    public Chefs(String speciality, boolean occupied, String currentorder, int id, String firstname, String lastname, String email, Department department, String position, Address adress, Efficiency efficiency) {
+        super(id, firstname, lastname, email, department, position, adress, efficiency);
+        this.speciality = speciality;
+        this.occupied = occupied;
+        this.currentorder = currentorder;
     }
     
-    
-
-    @Override
-    public void display() {
-        System.out.println("Id:"+super.getId());
-        System.out.println("Works per week:"+hours*7);
+    public void acceptorder()
+    {
+          LocalTime time=LocalTime.now();
+    DateTimeFormatter timef=DateTimeFormatter.ofPattern("hh:mm:ss");
+    String formattime=time.format(timef);
+    System.out.println(order.orderid+"has been accept at time"+formattime);
+        
+    }
+    public void processorder()
+    {
+        System.out.println(order.orderid+"has been processing"); 
+    }
+    public void finishorder()
+    {
+        System.out.println(order.orderid+"is finshed & call the waiter"+waiterr.id);
+        
     }
 
     @Override
-    public void payment() {
-        System.out.println("Salary:"+super.getSalary());
+    public void checkednotification() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     
